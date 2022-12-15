@@ -41,19 +41,20 @@ export class ClimaMainComponent {
   
 
   getWeatherData(local:string) {   
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${local}&appid=${this.api_id}`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${local}&lang=pt_br&appid=${this.api_id}`)
     .then(response=>response.json())
     .then(data=>{this.setWeatherData(data);})
     
   }
 
   setWeatherData(data:any){
-    this.WeatherData = data;   
+    this.WeatherData = data; 
     let sunsetTime = new Date(this.WeatherData.sys.sunset * 1000);
     this.WeatherData.sunset_time = sunsetTime.toLocaleTimeString();
     let currentDate = new Date();
     this.WeatherData.isDay = (currentDate.getTime() < sunsetTime.getTime());
     this.WeatherData.temp_celcius = (this.WeatherData.main.temp - 273.15).toFixed(0);
+    this.WeatherData.description = (this.WeatherData.weather[0].description)
     this.WeatherData.temp_min = (this.WeatherData.main.temp_min - 273.15).toFixed(0);
     this.WeatherData.temp_max = (this.WeatherData.main.temp_max - 273.15).toFixed(0);
     this.WeatherData.feels_like = (this.WeatherData.main.feels_like - 273.15).toFixed(0);
@@ -65,7 +66,7 @@ export class ClimaMainComponent {
     this.WeatherData.lat = (this.WeatherData.coord.lat).toFixed(2)
     this.WeatherData.lon = (this.WeatherData.coord.lon).toFixed(2 )
 
-    fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${this.WeatherData.lat}&lon=${this.WeatherData.lon}&appid=${this.api_id}`)
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${this.WeatherData.lat}&lon=${this.WeatherData.lon}&lang=pt_br&appid=${this.api_id}`)
     .then(response=>response.json())
     .then(data=>{this.setWeatherFiveData(data);}) 
   }
@@ -83,6 +84,8 @@ export class ClimaMainComponent {
     this.WeatherFiveData.temp_min = [(this.WeatherFiveData.list[7].main.temp_min - 273.15).toFixed(0), (this.WeatherFiveData.list[15].main.temp_min - 273.15).toFixed(0), (this.WeatherFiveData.list[23].main.temp_min - 273.15).toFixed(0), (this.WeatherFiveData.list[31].main.temp_min - 273.15).toFixed(0), (this.WeatherFiveData.list[39].main.temp_min - 273.15).toFixed(0)]
 
     this.WeatherFiveData.temp_max = [(this.WeatherFiveData.list[7].main.temp_max - 273.15).toFixed(0), (this.WeatherFiveData.list[15].main.temp_max - 273.15).toFixed(0), (this.WeatherFiveData.list[23].main.temp_max - 273.15).toFixed(0), (this.WeatherFiveData.list[31].main.temp_max - 273.15).toFixed(0), (this.WeatherFiveData.list[39].main.temp_max - 273.15).toFixed(0)]
+
+    this.WeatherFiveData.description = [this.WeatherFiveData.list[7].weather[0].description, this.WeatherFiveData.list[15].weather[0].description, this.WeatherFiveData.list[23].weather[0].description, this.WeatherFiveData.list[31].weather[0].description, this.WeatherFiveData.list[39].weather[0].description]
   
   }
 }

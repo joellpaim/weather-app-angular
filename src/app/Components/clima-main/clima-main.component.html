@@ -36,6 +36,7 @@
                 <mat-card-header>
                   <mat-card-title-group>
                     <mat-card-title>{{ WeatherData.temp_celcius }}°C</mat-card-title>
+                    <mat-card-subtitle>{{ WeatherData.description }}</mat-card-subtitle>
                     <mat-card-subtitle>{{ WeatherData.temp_min }}° / {{ WeatherData.temp_max }}°</mat-card-subtitle>
                     <mat-card-subtitle>Sensação térmica: {{ WeatherData.feels_like }}°</mat-card-subtitle>
                     <mat-card-subtitle>Humidade: {{ WeatherData.main.humidity }}%</mat-card-subtitle>
@@ -58,6 +59,7 @@
                         <mat-card-header>
                           <mat-card-title-group>
                             <mat-card-title>{{ WeatherFiveData.day[i] }}</mat-card-title>
+                            <mat-card-subtitle>{{ WeatherFiveData.description[i] }}</mat-card-subtitle>
                             <mat-card-subtitle>{{ WeatherFiveData.temp_min[i] }}° / {{ WeatherFiveData.temp_max[i] }}°</mat-card-subtitle>
                             <img mat-card-md-image src="{{ WeatherFiveData.icon[i] }}" >
                           </mat-card-title-group>
