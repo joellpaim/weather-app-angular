@@ -1,0 +1,76 @@
+
+<section class="sec">
+    
+    <!--Form input de pesquisa-->
+    <div class="container">
+        <div class="form-group formulario">
+            
+          <form class="example-form" #searchForm="ngForm" (ngSubmit)="getWeatherData(local)">
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Local</mat-label>
+                  <input type="text"
+                         placeholder="Escolha ou digite"
+                         aria-label="Local"
+                         matInput
+                         [formControl]="myControl"
+                         [matAutocomplete]="auto"
+                         [(ngModel)]='local'
+                         name="local" id="local">
+                  <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of options" [value]="option">
+                      {{option}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+            </form>    
+              
+        </div>
+    </div>
+
+    <!--Retorno das informações -->
+    <div class="container">     
+        
+        <div id="divWeatherMain">
+
+            <mat-card class="card-top">
+                <mat-card-header>
+                  <mat-card-title-group>
+                    <mat-card-title>{{ WeatherData.temp_celcius }}°C</mat-card-title>
+                    <mat-card-subtitle>{{ WeatherData.temp_min }}° / {{ WeatherData.temp_max }}°</mat-card-subtitle>
+                    <mat-card-subtitle>Sensação térmica: {{ WeatherData.feels_like }}°</mat-card-subtitle>
+                    <mat-card-subtitle>Humidade: {{ WeatherData.main.humidity }}%</mat-card-subtitle>
+                    <img mat-card-lg-image src="{{ WeatherData.icon }}" >
+                  </mat-card-title-group>
+                </mat-card-header>
+                <mat-card-content>
+                    {{ WeatherData.name }}
+                </mat-card-content>
+            </mat-card>
+
+            <br>
+            <br>
+            <hr>
+
+            <div class="cards">
+                <div *ngFor="let day of WeatherFiveData.day; let i = index" class="row">
+
+                    <mat-card class="card">
+                        <mat-card-header>
+                          <mat-card-title-group>
+                            <mat-card-title>{{ WeatherFiveData.day[i] }}</mat-card-title>
+                            <mat-card-subtitle>{{ WeatherFiveData.temp_min[i] }}° / {{ WeatherFiveData.temp_max[i] }}°</mat-card-subtitle>
+                            <img mat-card-md-image src="{{ WeatherFiveData.icon[i] }}" >
+                          </mat-card-title-group>
+                        </mat-card-header>
+                        <mat-card-content>
+                            {{ WeatherData.name }}
+                        </mat-card-content>
+                    </mat-card> 
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+</section>

@@ -1,0 +1,71 @@
+.sec {
+    height: 100vh;
+    background-color: #1565c0;
+    border-radius: 25px 25px 0px 0px;
+}
+
+.formulario {
+    border-radius: 10px;
+    margin-top: 25px;
+}
+
+.container {
+    display: flex;  
+    font-display: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.row {
+    position: relative;
+    float: left;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.card {
+    display: flex;
+    padding: auto;
+    width: 300px;
+}
+
+.card-top {
+    max-width: 95%;
+    margin: 50px;
+}
+
+.cards {
+    margin: 50px;
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.example-full-width {
+    width: 100%;
+}
+  
+
+#divWeatherMain {
+    display: block;
+    border-radius: 25px;
+    min-width: 95%;
+    background: #01579b;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.weatherWidgetRow {
+    display: block;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.weatherIcon {
+    width: 50px;
+}
